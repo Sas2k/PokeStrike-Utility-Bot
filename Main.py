@@ -20,7 +20,8 @@ bot = commands.Bot(prefix)
 # Load cogs
 initial_extensions = [
     "Cogs.Tools",
-    "Cogs.Pokemon"
+    "Cogs.Pokemon",
+    "Cogs.Github"
 ]
 
 print(initial_extensions)
@@ -40,6 +41,4 @@ async def on_ready():
     print(f"We have logged in as {bot.user}")
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name =f"{bot.command_prefix}help"))
     print(discord.__version__)
-    for guild in bot.guilds:
-        print(f"{guild.name}, {guild.id}, {guild.owner.id}")
 bot.run(token)
