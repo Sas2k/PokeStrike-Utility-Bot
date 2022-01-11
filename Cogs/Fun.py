@@ -11,7 +11,7 @@ class Fun(commands.Cog):
                     usage="@the_person_who_chose_heads(optional) @the_person_who_chose_tails(optional)",
                     brief="Flips a coin",
                     description = "flips a coin, the first person is heads, the second person is tails")
-    async def commandName(self, ctx:commands.Context, heads = None, tails = None):
+    async def coin(self, ctx:commands.Context, heads = None, tails = None):
         coin = randint(1,2)
         if heads == None:
             if coin == 1:
@@ -28,7 +28,7 @@ class Fun(commands.Cog):
                     usage="sides(optional)",
                     brief="rolls a dice",
                     description="rolls a 6 sided dice if the amount sides aren't put")
-    async def  commandName(self, ctx:commands.Context, sides: int = None):
+    async def roll(self, ctx:commands.Context, sides: int = None):
         if sides == None:
             dice = randint(1, 6)
             await ctx.send(f"🎲 is rolled and it lands on {dice}")
