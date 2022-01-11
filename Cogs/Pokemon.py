@@ -2,6 +2,16 @@ import discord
 from discord.ext import commands
 from pokemontcgsdk import Card
 from Main import *
+from pokemontcgsdk import RestClient
+from dotenv import load_dotenv
+import os
+
+if os.path.isfile('.env'):
+    load_dotenv('Cogs/.env')
+else:
+    pass
+
+RestClient.configure(os.environ['pokeapi'])
 class Pokemon(commands.Cog):
     def __init__(self, bot:commands.Bot):
         self.bot = bot
