@@ -7,7 +7,7 @@ class Pokemon(commands.Cog):
         self.bot = bot
 
     @commands.command(name="ptcg",
-                     usage=f"{prefix}ptcg xy1-1",
+                     usage=f"xy1-1",
                      brief="pokemon tcg card finder",
                      description="Finds the card that matches the id \nex** xy1-1")
     async def ptcg(self, ctx: commands.Context, id):

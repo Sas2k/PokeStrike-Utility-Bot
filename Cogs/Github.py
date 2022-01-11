@@ -18,7 +18,7 @@ class Github(commands.Cog):
         self.bot = bot
 
     @commands.command(name = "Bug",
-                    usage=f"{prefix}bug Title Description",
+                    usage=f"Title Description",
                     brief="Reports a Bug",
                     description = "Reports a Bug to the Github Repository")
     async def Bug(self, ctx:commands.Context, Title, Body):

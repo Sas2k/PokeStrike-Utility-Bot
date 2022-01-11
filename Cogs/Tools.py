@@ -6,8 +6,7 @@ class Tools(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
     
-    @commands.command(name="ping", 
-                     usage=f"{prefix}ping",
+    @commands.command(name="ping",
                      brief="the ping command",
                      description="returns the bot latency")
     async def ping(self, ctx: commands.Context):
