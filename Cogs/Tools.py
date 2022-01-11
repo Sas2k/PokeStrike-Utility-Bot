@@ -13,7 +13,7 @@ class Tools(commands.Cog):
         await ctx.send(f"Pong! {round(self.bot.latency * 1000)}ms") # It's now self.bot.latency
 
     @commands.command(name="embed",
-                     usage=f"{prefix}embed Title Description color Field1Header(optional) Field1T(Optional) Field1Inline(Optional)",
+                     usage=f"Title Description color Field1Header(optional) Field1T(Optional) Field1Inline(Optional)",
                      brief="creates an embed",
                      description="creates an embed for the color must be in hexadecimal")
     async def embed(self, ctx: commands.Context, title, description, color, F1h = None, F1T = None, F1I = None):
