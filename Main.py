@@ -50,7 +50,10 @@ async def on_ready():
 async def on_message(message:discord.Message):
     if message.author == bot.user:
         pass
+
     if bot.user.mentioned_in and "preifx" in  message.content:
         await bot.send(message.channel, f'My Prefix is {bot.command_prefix}')
+
+    await bot.process_commands(message)
 
 bot.run(token)
