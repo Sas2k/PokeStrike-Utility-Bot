@@ -37,5 +37,20 @@ async def on_ready():
     print(f"We have logged in as {bot.user}")
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name =f"{bot.command_prefix}help"))
     print(discord.__version__)
+    for guild in bot.guilds:
+        print(guild)
+    print(
+        f'{bot.user} is connected to the following guild:\n'
+        f'{guild.name}(id: {guild.id})'
+    )
+    members = '\n - '.join([member.name for member in guild.members])
+    print(f'Guild Members:\n - {members}')
+
+@bot.event
+async def on_message(message:discord.Message):
+    if message.author == bot.user:
+        pass
+    if bot.user.mentioned_in and "preifx" in  message.content:
+        await bot.send(message.channel, f'My Prefix is {bot.command_prefix}')
 
 bot.run(token)
