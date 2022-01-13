@@ -18,7 +18,7 @@ with open("configurations.json", "r") as config:
 
 bot = commands.Bot(prefix)
 # Load cogs
-initial_extensions = ["Cogs.Tools","Cogs.Pokemon","Cogs.Github","Cogs.Fun"]
+initial_extensions = ["Cogs.Tools","Cogs.Pokemon_TCG","Cogs.Github","Cogs.Fun"]
 
 print(initial_extensions)
 
