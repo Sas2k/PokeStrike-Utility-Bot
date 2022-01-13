@@ -33,7 +33,7 @@ class Pokemon_TCG(commands.Cog):
                     brief="Pokemon TCG Set finder",
                     description="Finds the set that matches the id \nex** xy")
     async def set_id(self, ctx: commands.Context, id):
-        sets = Set(id)
+        sets = Set.find(id)
         embed = discord.Embed(colour=0x03fcad, title=f"{sets.name} [Amount: {sets.total}]", description=f"Release Date: {sets.releaseDate}")
         embed.set_image(url=sets.images.logo)
         embed.set_image(url=sets.images.symbol)
