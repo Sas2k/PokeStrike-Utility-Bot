@@ -40,19 +40,19 @@ class Tools(commands.Cog):
             await message.add_reaction('✅')
         elif option1==None:
             await ctx.channel.purge(limit=1)
-            embed = Embed(title=f"```New poll: \n{question}```",value=f"**✅ = {option1}**\n**❎ = No**")
+            embed = Embed(title=f"```New poll: \n{question}```",description=f"**✅ = {option1}**\n**❎ = No**")
             message = await ctx.send(embed=embed)
             await message.add_reaction('❎')
             await message.add_reaction('✅')
         elif option2==None:
             await ctx.channel.purge(limit=1)
-            embed = Embed(title=f"```New poll: \n{question}```",value="**✅ = Yes**\n**❎ = {option2}**")
+            embed = Embed(title=f"```New poll: \n{question}```",description="**✅ = Yes**\n**❎ = {option2}**")
             message = await ctx.send(embed=embed)
             await message.add_reaction('❎')
             await message.add_reaction('✅')
         else:
             await ctx.channel.purge(limit=1)
-            embed = Embed(title=f"```New poll: \n{question}```",value="**✅ = {option1}**\n**❎ = {option2}**")
+            embed = Embed(title=f"```New poll: \n{question}```",description="**✅ = {option1}**\n**❎ = {option2}**")
             message = await ctx.send(embed=embed)
             await message.add_reaction('❎')
             await message.add_reaction('✅')
