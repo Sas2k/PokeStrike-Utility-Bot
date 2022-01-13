@@ -36,7 +36,7 @@ class Pokemon_TCG(commands.Cog):
         sets = Set.find(id)
         embed = discord.Embed(colour=0x03fcad, title=f"{sets.name} [Amount: {sets.total}]", description=f"Release Date: {sets.releaseDate}")
         embed.set_image(url=sets.images.logo)
-        embed.set_author(icon_url=sets.images.symbol)
+        embed.set_author(name="The icon of the set", icon_url=sets.images.symbol)
         await ctx.send(embed=embed)
 
 def setup(bot: commands.Bot):
