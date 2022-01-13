@@ -33,25 +33,21 @@ class Tools(commands.Cog):
                     description="Creates a poll with 2 options")
     async def poll(self, ctx, question, option1=None, option2=None):
         if option1==None and option2==None:
-            await ctx.channel.purge(limit=1)
             embed = Embed(title=f"```New poll: \n{question}```", description="**✅ = Yes**\n**❎ = No**")
             message = await ctx.send(embed=embed)
             await message.add_reaction('❎')
             await message.add_reaction('✅')
         elif option1==None:
-            await ctx.channel.purge(limit=1)
             embed = Embed(title=f"```New poll: \n{question}```",description=f"**✅ = {option1}**\n**❎ = No**")
             message = await ctx.send(embed=embed)
             await message.add_reaction('❎')
             await message.add_reaction('✅')
         elif option2==None:
-            await ctx.channel.purge(limit=1)
             embed = Embed(title=f"```New poll: \n{question}```",description=f"**✅ = Yes**\n**❎ = {option2}**")
             message = await ctx.send(embed=embed)
             await message.add_reaction('❎')
             await message.add_reaction('✅')
         else:
-            await ctx.channel.purge(limit=1)
             embed = Embed(title=f"```New poll: \n{question}```",description=f"**✅ = {option1}**\n**❎ = {option2}**")
             message = await ctx.send(embed=embed)
             await message.add_reaction('❎')
