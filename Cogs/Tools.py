@@ -33,25 +33,25 @@ class Tools(commands.Cog):
                     description="Creates a poll with 2 options")
     async def poll(self, ctx, question, option1=None, option2=None):
         if option1==None and option2==None:
-            embed = Embed(title=f"```New poll: \n{question}```", description="**✅ = Yes**\n**❎ = No**")
+            embed = Embed(title=f"```New poll: \n{question}```", description="**1️⃣ = Yes**\n**2️⃣ = No**")
             message = await ctx.send(embed=embed)
-            await message.add_reaction('❎')
-            await message.add_reaction('✅')
+            await message.add_reaction('1️⃣')
+            await message.add_reaction('2️⃣')
         elif option1==None:
-            embed = Embed(title=f"```New poll: \n{question}```",description=f"**✅ = {option1}**\n**❎ = No**")
+            embed = Embed(title=f"```New poll: \n{question}```",description=f"**1️⃣ = {option1}**\n**2️⃣ = No**")
             message = await ctx.send(embed=embed)
-            await message.add_reaction('❎')
-            await message.add_reaction('✅')
+            await message.add_reaction('1️⃣')
+            await message.add_reaction('2️⃣')
         elif option2==None:
-            embed = Embed(title=f"```New poll: \n{question}```",description=f"**✅ = Yes**\n**❎ = {option2}**")
+            embed = Embed(title=f"```New poll: \n{question}```",description=f"**1️⃣ = Yes**\n**2️⃣ = {option2}**")
             message = await ctx.send(embed=embed)
-            await message.add_reaction('❎')
-            await message.add_reaction('✅')
+            await message.add_reaction('1️⃣')
+            await message.add_reaction('2️⃣')
         else:
-            embed = Embed(title=f"```New poll: \n{question}```",description=f"**✅ = {option1}**\n**❎ = {option2}**")
+            embed = Embed(title=f"```New poll: \n{question}```",description=f"**1️⃣ = {option1}**\n**2️⃣ = {option2}**")
             message = await ctx.send(embed=embed)
-            await message.add_reaction('❎')
-            await message.add_reaction('✅')
+            await message.add_reaction('1️⃣')
+            await message.add_reaction('2️⃣')
 
 def setup(bot: commands.Bot):
     bot.add_cog(Tools(bot))
