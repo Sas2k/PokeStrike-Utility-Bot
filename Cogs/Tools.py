@@ -1,3 +1,4 @@
+from os import name
 import discord
 from discord.ext import commands
 from Main import *
@@ -24,6 +25,32 @@ class Tools(commands.Cog):
         else:
             pass
         await ctx.send(embed=embed)
+
+    @commands.command(name="poll",
+                    usage="question option1(optional) option2(optional)",
+                    brief="creates a poll",
+                    description="Creates a poll with 2 options")
+    async def poll(self, ctx, question, option1=None, option2=None):
+        if option1==None and option2==None:
+            await ctx.channel.purge(limit=1)
+            message = await ctx.send(f"```New poll: \n{question}```\n**✅ = Yes**\n**❎ = No**")
+            await message.add_reaction('❎')
+            await message.add_reaction('✅')
+        elif option1==None:
+            await ctx.channel.purge(limit=1)
+            message = await ctx.send(f"```New poll: \n{question}```\n**✅ = {option1}**\n**❎ = No**")
+            await message.add_reaction('❎')
+            await message.add_reaction('✅')
+        elif option2==None:
+            await ctx.channel.purge(limit=1)
+            message = await ctx.send(f"```New poll: \n{question}```\n**✅ = Yes**\n**❎ = {option2}**")
+            await message.add_reaction('❎')
+            await message.add_reaction('✅')
+        else:
+            await ctx.channel.purge(limit=1)
+            message = await ctx.send(f"```New poll: \n{question}```\n**✅ = {option1}**\n**❎ = {option2}**")
+            await message.add_reaction('❎')
+            await message.add_reaction('✅')
 
 def setup(bot: commands.Bot):
     bot.add_cog(Tools(bot))
