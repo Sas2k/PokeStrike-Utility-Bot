@@ -1,5 +1,6 @@
 from os import name
 import discord
+from discord.embeds import Embed
 from discord.ext import commands
 from Main import *
 
@@ -33,22 +34,26 @@ class Tools(commands.Cog):
     async def poll(self, ctx, question, option1=None, option2=None):
         if option1==None and option2==None:
             await ctx.channel.purge(limit=1)
-            message = await ctx.send(f"```New poll: \n{question}```\n**✅ = Yes**\n**❎ = No**")
+            embed = Embed(title=f"```New poll: \n{question}```", description="**✅ = Yes**\n**❎ = No**")
+            message = await ctx.send(embed=embed)
             await message.add_reaction('❎')
             await message.add_reaction('✅')
         elif option1==None:
             await ctx.channel.purge(limit=1)
-            message = await ctx.send(f"```New poll: \n{question}```\n**✅ = {option1}**\n**❎ = No**")
+            embed = Embed(title=f"```New poll: \n{question}```",value=f"**✅ = {option1}**\n**❎ = No**")
+            message = await ctx.send(embed=embed)
             await message.add_reaction('❎')
             await message.add_reaction('✅')
         elif option2==None:
             await ctx.channel.purge(limit=1)
-            message = await ctx.send(f"```New poll: \n{question}```\n**✅ = Yes**\n**❎ = {option2}**")
+            embed = Embed(title=f"```New poll: \n{question}```",value="**✅ = Yes**\n**❎ = {option2}**")
+            message = await ctx.send(embed=embed)
             await message.add_reaction('❎')
             await message.add_reaction('✅')
         else:
             await ctx.channel.purge(limit=1)
-            message = await ctx.send(f"```New poll: \n{question}```\n**✅ = {option1}**\n**❎ = {option2}**")
+            embed = Embed(title=f"```New poll: \n{question}```",value="**✅ = {option1}**\n**❎ = {option2}**")
+            message = await ctx.send(embed=embed)
             await message.add_reaction('❎')
             await message.add_reaction('✅')
 
