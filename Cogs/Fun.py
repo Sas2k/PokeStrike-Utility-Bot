@@ -8,18 +8,18 @@ from dotenv import load_dotenv
 import os
 import asyncio
 
-if os.path.isfile('Cogs/.env'):
-    load_dotenv('Cogs/.env')
+if os.path.isfile('Cogs\.env'):
+    load_dotenv('Cogs\.env')
 else:
     pass
 
-psw = os.environ['mongopsw']
+'''psw = os.environ['mongopsw']
 client = MongoClient(f"mongodb+srv://QuizWriter:{psw}@pokequiz.vi6j1.mongodb.net/PokeQuiz?retryWrites=true&w=majority")
 print(client)
 db = client.Quiz
 print(db)
 collection = db.PokeQuiz
-print(collection)
+print(collection)'''
 
 class Fun(commands.Cog):
     def __init__(self, bot:commands.Bot):
@@ -54,7 +54,7 @@ class Fun(commands.Cog):
             dice = randint(1, sides)
             await ctx.send(f"A 🎲({sides}) is rolled and lands on {dice}")
 
-    @commands.command(name= "quiz",
+    '''@commands.command(name= "quiz",
                     brief="asks a random pokemon related quiz",
                     description="Asks a Pokemon related question from the database")
     async def quiz(self, ctx:commands.Context):
@@ -95,7 +95,7 @@ class Fun(commands.Cog):
                     "answer": answer}
             collection.insert_one(post)
         else:
-            await ctx.send("This question is already in the database ")
+            await ctx.send("This question is already in the database ")'''
 
 def setup(bot:commands.Bot):
     bot.add_cog(Fun(bot))
