@@ -1,4 +1,5 @@
-import asyncio
+from pydoc import describe
+from turtle import title
 import discord
 from discord.ext import commands
 from random import randint, randrange
@@ -6,6 +7,7 @@ import pymongo
 from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
+import asyncio
 
 if os.path.isfile('./.env'):
     load_dotenv('Cogs/.env')
@@ -14,8 +16,11 @@ else:
 
 psw = os.environ['mongopsw']
 client = MongoClient(f"mongodb+srv://QuizWriter:{psw}@pokequiz.vi6j1.mongodb.net/PokeQuiz?retryWrites=true&w=majority")
+print(client)
 db = client.Quiz
+print(db)
 collection = db.PokeQuiz
+print(collection)
 
 class Fun(commands.Cog):
     def __init__(self, bot:commands.Bot):
@@ -66,15 +71,17 @@ class Fun(commands.Cog):
             if '/' in question.get('answer'):
                 answer = str(question.get('answer'))
                 answer = answer.split('/')
-            return msg.lower() == answer[0] or msg.lower() == answer[1]
+                return msg.lower() == answer[0] or msg.lower() == answer[1]
+            else:
+                answer = str(question.get('answer'))
+                return msg.lower() == answer
         try:
-            mesg = self.bot.wait_for('message', timeout=30.0, check=check)
+            mesg = await self.bot.wait_for('message', timeout=30.0, check=check)
+            if mesg:
+                await ctx.send(f"You got it {mesg.author.mention}, answer(s) are {question.get('answer')}")
         except asyncio.TimeoutError:
-            ctx.send("Time Out!")
-        else:
-            ctx.send(f"You got it {mesg.author}, answer(s) are {question.get('answer')}")
-
-        
+            membed = discord.Embed(title=f"Time Up. Nobody has solved it.", description=f"The answer(s) is/are {question.get('answer')}", colour=color)
+            ctx.send(embed=membed)
 
     @commands.command(name="add_quiz",
                     brief="Adds a pokemon quiz",
@@ -89,7 +96,7 @@ class Fun(commands.Cog):
                     "answer": answer}
             collection.insert_one(post)
         else:
-            ctx.send("This question is already in the database ")
+            await ctx.send("This question is already in the database ")
 
 def setup(bot:commands.Bot):
     bot.add_cog(Fun(bot))
