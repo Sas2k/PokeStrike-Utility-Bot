@@ -1,4 +1,3 @@
-from pydoc import describe
 from turtle import title
 import discord
 from discord.ext import commands
@@ -9,7 +8,7 @@ from dotenv import load_dotenv
 import os
 import asyncio
 
-if os.path.isfile('./.env'):
+if os.path.isfile('Cogs/.env'):
     load_dotenv('Cogs/.env')
 else:
     pass
@@ -81,7 +80,7 @@ class Fun(commands.Cog):
                 await ctx.send(f"You got it {mesg.author.mention}, answer(s) are {question.get('answer')}")
         except asyncio.TimeoutError:
             membed = discord.Embed(title=f"Time Up. Nobody has solved it.", description=f"The answer(s) is/are {question.get('answer')}", colour=color)
-            ctx.send(embed=membed)
+            await ctx.send(embed=membed)
 
     @commands.command(name="add_quiz",
                     brief="Adds a pokemon quiz",
