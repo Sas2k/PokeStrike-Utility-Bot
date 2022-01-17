@@ -33,7 +33,11 @@ class Quiz(commands.Cog):
             if '/' in question.get('answer'):
                 answer = str(question.get('answer'))
                 answer = answer.split('/')
-                return msg.lower() == answer[0] or msg.lower() == answer[1]
+                for ans in range(0, len(answer)-1):
+                    if ans == msg.lower():
+                        return True
+                    else:
+                        pass
             else:
                 answer = str(question.get('answer'))
                 return msg.lower() == answer
@@ -60,5 +64,19 @@ class Quiz(commands.Cog):
         else:
             await ctx.send("This question is already in the database ")
         
+    @commands.command(name = "all_quiz",
+                    brief="shows all of the quizez",
+                    description = "Shows All of the quizez in the database")
+    async def commandName(self, ctx:commands.Context):
+        document = list(collection.find({}, {"_id": 0, "question": 1}))
+        mesg = ""
+        for x in range(0, len(document)):
+            question = document[x]
+            mesg += f"{question.get('question')}\n"
+        color = f'{randrange(16**2):x}{randrange(16**2):x}{randrange(16**2):x}'
+        color = int(color, 16)
+        embed = discord.Embed(title="Questions ❓", description=mesg, colour=color)
+        await ctx.send(embed=embed)
+
 def setup(bot:commands.Bot):
     bot.add_cog(Quiz(bot))
