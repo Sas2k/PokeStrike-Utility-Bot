@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
 from pokemontcgsdk import Card, Set
-from Main import *
 from pokemontcgsdk import RestClient
 from dotenv import load_dotenv
 import os
@@ -12,6 +11,18 @@ else:
     pass
 
 RestClient.configure(os.environ['pokeapi'])
+
+async def send_embed(ctx, embed):
+    try:
+        await ctx.send(embed=embed)
+    except discord.Forbidden:
+        try:
+            await ctx.send("Hey, seems like I can't send embeds. Please check my permissions :)")
+        except discord.Forbidden:
+            await ctx.author.send(
+                f"Hey, seems like I can't send any message in {ctx.channel.name} on {ctx.guild.name}\n"
+                f"May you inform the server team about this issue? :slight_smile: ", embed=embed)
+
 class Pokemon_TCG(commands.Cog):
     def __init__(self, bot:commands.Bot):
         self.bot = bot

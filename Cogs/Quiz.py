@@ -5,7 +5,6 @@ import pymongo
 from random import randint, randrange
 from dotenv import load_dotenv
 import os
-from Main import *
 
 load_dotenv("Cogs/.env")
 
@@ -13,6 +12,16 @@ psw = os.environ["MONGOPSW"]
 client = pymongo.MongoClient(f"mongodb+srv://QuizWriter:{psw}@pokequiz.vi6j1.mongodb.net/PokeQuiz?retryWrites=true&w=majority")
 db = client.Quiz
 collection = db.PokeQuiz
+async def send_embed(ctx, embed):
+    try:
+        await ctx.send(embed=embed)
+    except discord.Forbidden:
+        try:
+            await ctx.send("Hey, seems like I can't send embeds. Please check my permissions :)")
+        except discord.Forbidden:
+            await ctx.author.send(
+                f"Hey, seems like I can't send any message in {ctx.channel.name} on {ctx.guild.name}\n"
+                f"May you inform the server team about this issue? :slight_smile: ", embed=embed)
 
 class Quiz(commands.Cog):
     def __init__(self, bot:commands.Bot):

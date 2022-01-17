@@ -2,7 +2,17 @@ from os import name
 import discord
 from discord.embeds import Embed
 from discord.ext import commands
-from Main import *
+
+async def send_embed(ctx, embed):
+    try:
+        await ctx.send(embed=embed)
+    except discord.Forbidden:
+        try:
+            await ctx.send("Hey, seems like I can't send embeds. Please check my permissions :)")
+        except discord.Forbidden:
+            await ctx.author.send(
+                f"Hey, seems like I can't send any message in {ctx.channel.name} on {ctx.guild.name}\n"
+                f"May you inform the server team about this issue? :slight_smile: ", embed=embed)
 
 class Tools(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -33,10 +43,10 @@ class Tools(commands.Cog):
                     description="Creates a poll with 2 options")
     async def poll(self, ctx, question, option1=None, option2=None):
         if option1==None and option2==None:
-            embed = Embed(title=f"```New poll: \n{question}```", description="**1️⃣ = Yes**\n**2️⃣ = No**")
+            embed = Embed(title=f"```New poll: \n{question}```", description="**✅ = Yes**\n**❎ = No**")
             message = await send_embed(ctx, embed)
-            await message.add_reaction('1️⃣')
-            await message.add_reaction('2️⃣')
+            await message.add_reaction('✅')
+            await message.add_reaction('❎')
         elif option1==None:
             embed = Embed(title=f"```New poll: \n{question}```",description=f"**1️⃣ = {option1}**\n**2️⃣ = No**")
             message = await send_embed(ctx, embed)

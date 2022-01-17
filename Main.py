@@ -46,15 +46,4 @@ async def on_ready():
     members = '\n - '.join([member.name for member in guild.members])
     print(f'Guild Members:\n - {members}')
 
-async def send_embed(ctx, embed):
-    try:
-        await ctx.send(embed=embed)
-    except discord.Forbidden:
-        try:
-            await ctx.send("Hey, seems like I can't send embeds. Please check my permissions :)")
-        except discord.Forbidden:
-            await ctx.author.send(
-                f"Hey, seems like I can't send any message in {ctx.channel.name} on {ctx.guild.name}\n"
-                f"May you inform the server team about this issue? :slight_smile: ", embed=embed)
-
 bot.run(token)
