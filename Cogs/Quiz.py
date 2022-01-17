@@ -72,7 +72,7 @@ class Quiz(commands.Cog):
         mesg = ""
         for x in range(0, len(document)):
             question = document[x]
-            mesg += f"[{x+1}]{question.get('question')}\n"
+            mesg += f"[{x+1}] {question.get('question')}\n\n"
         color = f'{randrange(16**2):x}{randrange(16**2):x}{randrange(16**2):x}'
         color = int(color, 16)
         embed = discord.Embed(title="Questions ❓", description=mesg, colour=color)
