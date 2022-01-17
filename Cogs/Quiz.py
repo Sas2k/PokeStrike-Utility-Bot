@@ -32,12 +32,15 @@ class Quiz(commands.Cog):
             msg = m.content
             if '/' in question.get('answer'):
                 answer = str(question.get('answer'))
-                answer = answer.split('/')
-                for ans in range(0, len(answer)-1):
-                    if ans == msg.lower():
-                        return True
-                    else:
-                        pass
+                answerr = answer.split('/')
+                if msg.lower() == answerr[0]:
+                    return True
+                elif msg.lower() == answerr[1]:
+                    return True
+                elif msg.lower() == answer:
+                    return True
+                else:
+                    return False
             else:
                 answer = str(question.get('answer'))
                 return msg.lower() == answer
