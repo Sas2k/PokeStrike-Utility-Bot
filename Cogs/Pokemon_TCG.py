@@ -27,7 +27,7 @@ class Pokemon_TCG(commands.Cog):
         embed.add_field(name="Evolves From:", value=f"{card.evolvesFrom}", inline=False)
         embed.add_field(name="Moves [for now only 1 is displayed]", value=f"{card.attacks[0].name} | {card.attacks[0].text} | {card.attacks[0].cost} | {card.attacks[0].damage}", inline=False)
         embed.add_field(name="Other Info", value=f"set: {card.set.name}\nrarity: {card.rarity}\nCard Market: {card.cardmarket.url}", inline=False)
-        await ctx.send(embed=embed)
+        await send_embed(ctx, embed)
     @commands.command(name="set_id",
                     usage="xy",
                     brief="Pokemon TCG Set finder",
@@ -37,7 +37,7 @@ class Pokemon_TCG(commands.Cog):
         embed = discord.Embed(colour=0x03fcad, title=f"{sets.name} [Amount: {sets.total}]", description=f"Release Date: {sets.releaseDate}")
         embed.set_image(url=sets.images.logo)
         embed.set_author(name="The icon of the set", icon_url=sets.images.symbol)
-        await ctx.send(embed=embed)
+        await send_embed(ctx, embed)
 
 def setup(bot: commands.Bot):
     bot.add_cog(Pokemon_TCG(bot))

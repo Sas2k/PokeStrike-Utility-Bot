@@ -5,6 +5,7 @@ import pymongo
 from random import randint, randrange
 from dotenv import load_dotenv
 import os
+from Main import *
 
 load_dotenv("Cogs/.env")
 
@@ -27,7 +28,7 @@ class Quiz(commands.Cog):
         color = f'{randrange(16**2):x}{randrange(16**2):x}{randrange(16**2):x}'
         color = int(color, 16)
         embed = discord.Embed(title=f"[{qn+1}]{question.get('question')}", description="Answer this you have 30 secs", colour=color)
-        await ctx.send(embed=embed)
+        await send_embed(ctx, embed)
         def check(m):
             msg = m.content
             if '/' in question.get('answer'):
@@ -50,7 +51,7 @@ class Quiz(commands.Cog):
                 await ctx.send(f"You got it {mesg.author.mention}, answer(s) are {question.get('answer')}")
         except asyncio.TimeoutError:
             membed = discord.Embed(title=f"Time Up. Nobody has solved it.", description=f"The answer(s) is/are {question.get('answer')}", colour=color)
-            await ctx.send(embed=membed)
+            await send_embed(ctx ,membed)
 
     @commands.command(name="add_quiz",
                     brief="Adds a pokemon quiz",
@@ -64,6 +65,7 @@ class Quiz(commands.Cog):
             post = {"question": question,
                     "answer": answer}
             collection.insert_one(post)
+            await ctx.send("Accepted")
         else:
             await ctx.send("This question is already in the database ")
         
@@ -79,7 +81,7 @@ class Quiz(commands.Cog):
         color = f'{randrange(16**2):x}{randrange(16**2):x}{randrange(16**2):x}'
         color = int(color, 16)
         embed = discord.Embed(title="Questions ❓", description=mesg, colour=color)
-        await ctx.send(embed=embed)
+        await send_embed(ctx, embed)
 
 def setup(bot:commands.Bot):
     bot.add_cog(Quiz(bot))

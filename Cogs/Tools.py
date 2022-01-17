@@ -25,7 +25,7 @@ class Tools(commands.Cog):
             embed.add_field(name=F1h, value=F1T, inline=F1I)
         else:
             pass
-        await ctx.send(embed=embed)
+        await send_embed(ctx, embed)
 
     @commands.command(name="poll",
                     usage="question option1(optional) option2(optional)",
@@ -34,22 +34,22 @@ class Tools(commands.Cog):
     async def poll(self, ctx, question, option1=None, option2=None):
         if option1==None and option2==None:
             embed = Embed(title=f"```New poll: \n{question}```", description="**1️⃣ = Yes**\n**2️⃣ = No**")
-            message = await ctx.send(embed=embed)
+            message = await send_embed(ctx, embed)
             await message.add_reaction('1️⃣')
             await message.add_reaction('2️⃣')
         elif option1==None:
             embed = Embed(title=f"```New poll: \n{question}```",description=f"**1️⃣ = {option1}**\n**2️⃣ = No**")
-            message = await ctx.send(embed=embed)
+            message = await send_embed(ctx, embed)
             await message.add_reaction('1️⃣')
             await message.add_reaction('2️⃣')
         elif option2==None:
             embed = Embed(title=f"```New poll: \n{question}```",description=f"**1️⃣ = Yes**\n**2️⃣ = {option2}**")
-            message = await ctx.send(embed=embed)
+            message = await send_embed(ctx, embed)
             await message.add_reaction('1️⃣')
             await message.add_reaction('2️⃣')
         else:
             embed = Embed(title=f"```New poll: \n{question}```",description=f"**1️⃣ = {option1}**\n**2️⃣ = {option2}**")
-            message = await ctx.send(embed=embed)
+            message = await send_embed(ctx, embed)
             await message.add_reaction('1️⃣')
             await message.add_reaction('2️⃣')
 
