@@ -34,7 +34,7 @@ class Fun(commands.Cog):
             await ctx.send(f"🎲 is rolled and it lands on {dice}")
         else:
             dice = randint(1, sides)
-            await ctx.send(f"A 🎲({sides}) is rolled and lands on {dice}")
+            await ctx.send(f"A 🎲({sides}) is rolled by {ctx.author.mention} and lands on {dice}")
 
 
 def setup(bot:commands.Bot):

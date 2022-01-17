@@ -34,6 +34,7 @@ class Quiz(commands.Cog):
         document = list(collection.find({}, {'_id': 0}))
         qn = randint(0, len(document)-1)
         question = document[qn]
+        answer = str(question.get('answer'))
         color = f'{randrange(16**2):x}{randrange(16**2):x}{randrange(16**2):x}'
         color = int(color, 16)
         embed = discord.Embed(title=f"[{qn+1}]{question.get('question')}", description="Answer this you have 30 secs", colour=color)
@@ -57,10 +58,14 @@ class Quiz(commands.Cog):
         try:
             mesg = await self.bot.wait_for('message', timeout=30.0, check=check)
             if mesg:
-                await ctx.send(f"You got it {mesg.author.mention}, answer(s) are {question.get('answer')}")
+                if '/' in answer:
+                    answer = answer.replace('/', ', ')
+                await ctx.send(f"You got it {mesg.author.mention}, answer(s) are {answer}")
         except asyncio.TimeoutError:
+            if '/' in answer:
+                answer = answer.replace('/', ', ')
             membed = discord.Embed(title=f"Time Up. Nobody has solved it.", description=f"The answer(s) is/are {question.get('answer')}", colour=color)
-            await send_embed(ctx ,membed)
+            await send_embed(ctx, membed)
 
     @commands.command(name="add_quiz",
                     brief="Adds a pokemon quiz",
