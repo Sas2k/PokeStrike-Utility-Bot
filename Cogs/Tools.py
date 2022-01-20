@@ -69,14 +69,12 @@ class Tools(commands.Cog):
                     description="deletes the commanded amount only can be done with admin permissions")
     @commands.has_permissions(administrator=True)
     async def clean(ctx, limit: int):
+        try:
             await ctx.channel.purge(limit=limit)
             await ctx.send('Cleared by {}'.format(ctx.author.mention))
             await ctx.message.delete()
-
-    @clean.error
-    async def clear_error(ctx, error):
-        if isinstance(error, commands.MissingPermissions):
-            await ctx.send("You cant do that!")
+        except commands.MissingPermissions:
+            await ctx.send("You don't have the perms for that 💢")
 
 def setup(bot: commands.Bot):
     bot.add_cog(Tools(bot))
