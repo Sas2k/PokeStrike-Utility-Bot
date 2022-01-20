@@ -1,3 +1,4 @@
+import asyncio
 from os import name
 import discord
 from discord.embeds import Embed
@@ -67,10 +68,11 @@ class Tools(commands.Cog):
                     usage="limit(int)",
                     brief="deletes messages",
                     description="deletes the commanded amount only can be done with admin permissions")
-    async def clean(ctx, limit: int):
+    async def clean(self, ctx, limit: int):
         await ctx.channel.purge(limit=limit)
         await ctx.send('Cleared by {}'.format(ctx.author.mention))
-        await ctx.message.delete()
+        await asyncio.sleep(2)
+        await ctx.channel.purge(limit=1)
 
 def setup(bot: commands.Bot):
     bot.add_cog(Tools(bot))
