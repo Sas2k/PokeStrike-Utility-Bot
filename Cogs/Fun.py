@@ -100,7 +100,7 @@ class Fun(commands.Cog):
                     usage="rule-number(0-255) postion[right, left, center] initial-condition[random, impule(starts with 1 cell)",
                     brief="simulates a cells",
                     description = "Simulates a rule of an elementry cellular automaton")
-    async def commandName(self, ctx:commands.Context, rule, position, init_cond):
+    async def commandName(self, ctx:commands.Context, rule: int, position: str, init_cond: str):
         rule_number = rule  # select the update rule
         size = 100  # number of cells in one row
         steps = 100  # number of time steps
