@@ -116,7 +116,7 @@ class Fun(commands.Cog):
 
         plt.savefig('elementary_cellular_automaton.png', dpi=300, bbox_inches='tight')
 
-        await ctx.send(file=discord.File("/Cogs/elementary_cellular_automaton.png"))
+        await ctx.send(file=discord.File("elementary_cellular_automaton.png"))
 
 def setup(bot:commands.Bot):
     bot.add_cog(Fun(bot))
