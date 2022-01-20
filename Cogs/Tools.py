@@ -43,22 +43,22 @@ class Tools(commands.Cog):
                     description="Creates a poll with 2 options")
     async def poll(self, ctx, question, option1=None, option2=None):
         if option1==None and option2==None:
-            embed = Embed(title=f"```New poll: \n{question}```", description="**✅ = Yes**\n**❎ = No**")
+            embed = Embed(title=f"{question}", description="**✅ = Yes**\n\n**❎ = No**", colour=0x96b9d9)
             message = await ctx.send(embed=embed)
             await message.add_reaction('✅')
             await message.add_reaction('❎')
         elif option1==None:
-            embed = Embed(title=f"```New poll: \n{question}```",description=f"**1️⃣ = {option1}**\n**2️⃣ = No**")
+            embed = Embed(title=f"{question}",description=f"**1️⃣ = {option1}**\n\n**2️⃣ = No**", colour=0x96b9d9)
             message = await ctx.send(embed=embed)
             await message.add_reaction('1️⃣')
             await message.add_reaction('2️⃣')
         elif option2==None:
-            embed = Embed(title=f"```New poll: \n{question}```",description=f"**1️⃣ = Yes**\n**2️⃣ = {option2}**")
+            embed = Embed(title=f"{question}",description=f"**1️⃣ = Yes**\n\n**2️⃣ = {option2}**", colour=0x96b9d9)
             message = await ctx.send(embed=embed)
             await message.add_reaction('1️⃣')
             await message.add_reaction('2️⃣')
         else:
-            embed = Embed(title=f"```New poll: \n{question}```",description=f"**1️⃣ = {option1}**\n**2️⃣ = {option2}**")
+            embed = Embed(title=f"{question}",description=f"**1️⃣ = {option1}**\n\n**2️⃣ = {option2}**", colour=0x96b9d9)
             message = await ctx.send(embed=embed)
             await message.add_reaction('1️⃣')
             await message.add_reaction('2️⃣')
@@ -67,14 +67,10 @@ class Tools(commands.Cog):
                     usage="limit(int)",
                     brief="deletes messages",
                     description="deletes the commanded amount only can be done with admin permissions")
-    @commands.has_permissions(administrator=True)
     async def clean(ctx, limit: int):
-        try:
-            await ctx.channel.purge(limit=limit)
-            await ctx.send('Cleared by {}'.format(ctx.author.mention))
-            await ctx.message.delete()
-        except commands.MissingPermissions:
-            await ctx.send("You don't have the perms for that 💢")
+        await ctx.channel.purge(limit=limit)
+        await ctx.send('Cleared by {}'.format(ctx.author.mention))
+        await ctx.message.delete()
 
 def setup(bot: commands.Bot):
     bot.add_cog(Tools(bot))
