@@ -1,5 +1,4 @@
 import asyncio
-from os import name
 import discord
 from discord.embeds import Embed
 from discord.ext import commands
@@ -20,8 +19,7 @@ class Tools(commands.Cog):
         self.bot = bot
     
     @commands.command(name="ping",
-                     brief="the ping command",
-                     description="returns the bot latency")
+                     help="returns the bot latency")
     async def ping(self, ctx: commands.Context):
         await ctx.send(f"Pong! {round(self.bot.latency * 1000)}ms") # It's now self.bot.latency
 
@@ -40,8 +38,7 @@ class Tools(commands.Cog):
 
     @commands.command(name="poll",
                     usage="question option1(optional) option2(optional)",
-                    brief="creates a poll",
-                    description="Creates a poll with 2 options")
+                    help="Creates a poll with 2 options")
     async def poll(self, ctx, question, option1=None, option2=None):
         if option1==None and option2==None:
             embed = Embed(title=f"{question}", description="**✅ = Yes**\n\n**❎ = No**", colour=0x96b9d9)
@@ -66,8 +63,7 @@ class Tools(commands.Cog):
 
     @commands.command(name="clear",
                     usage="limit(int)",
-                    brief="deletes messages",
-                    description="deletes the commanded amount only can be done with admin permissions")
+                    help="deletes the commanded amount only can be done with admin permissions")
     async def clean(self, ctx, limit: int):
         await ctx.channel.purge(limit=limit)
         await ctx.send('Cleared by {}'.format(ctx.author.mention))

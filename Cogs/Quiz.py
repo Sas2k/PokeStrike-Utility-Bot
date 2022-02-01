@@ -28,8 +28,7 @@ class Quiz(commands.Cog):
         self.bot = bot
 
     @commands.command(name= "quiz",
-                    brief="asks a random pokemon related quiz",
-                    description="Asks a Pokemon related question from the database")
+                    help="Asks a Pokemon related question from the database")
     async def quiz(self, ctx:commands.Context):
         document = list(collection.find({}, {'_id': 0}))
         qn = randint(0, len(document)-1)
@@ -68,8 +67,7 @@ class Quiz(commands.Cog):
             await send_embed(ctx, membed)
 
     @commands.command(name="add_quiz",
-                    brief="Adds a pokemon quiz",
-                    description="Adds a pokemon related quiz to the database",
+                    help="Adds a pokemon related quiz to the database",
                     usage="Question Answer")
     async def add_quiz(self, ctx:commands.Context, question: str, answer: str):
         question = question.lower()
@@ -84,8 +82,7 @@ class Quiz(commands.Cog):
             await ctx.send("This question is already in the database ")
         
     @commands.command(name = "all_quiz",
-                    brief="shows all of the quizez",
-                    description = "Shows All of the quizez in the database")
+                    help = "Shows All of the quizez in the database")
     async def commandName(self, ctx:commands.Context):
         document = list(collection.find({}, {"_id": 0, "question": 1}))
         mesg = ""

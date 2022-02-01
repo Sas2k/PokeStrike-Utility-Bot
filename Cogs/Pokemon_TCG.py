@@ -29,8 +29,7 @@ class Pokemon_TCG(commands.Cog):
 
     @commands.command(name="card_id",
                      usage="xy1-1",
-                     brief="pokemon TCG card finder",
-                     description="Finds the card that matches the id \nex** xy1-1")
+                     help="Finds the card that matches the id \nex** xy1-1")
     async def card_id(self, ctx: commands.Context, id):
         card = Card.find(id)
         embed = discord.Embed(colour=0x03fcad, title=f"{card.name} [HP:{card.hp}] [ID: {card.id}] National Pokedex Number:{card.nationalPokedexNumbers}", description=f"type: {card.types}\nweakness: {card.weaknesses}")
@@ -41,8 +40,7 @@ class Pokemon_TCG(commands.Cog):
         await send_embed(ctx, embed)
     @commands.command(name="set_id",
                     usage="xy",
-                    brief="Pokemon TCG Set finder",
-                    description="Finds the set that matches the id \nex** xy")
+                    help="Finds the set that matches the id \nex** xy")
     async def set_id(self, ctx: commands.Context, id):
         sets = Set.find(id)
         embed = discord.Embed(colour=0x03fcad, title=f"{sets.name} [Amount: {sets.total}]", description=f"Release Date: {sets.releaseDate}")
