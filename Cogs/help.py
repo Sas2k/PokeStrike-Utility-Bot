@@ -20,7 +20,7 @@ class Help(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    # @commands.bot_has_permissions(add_reactions=True,embed_links=True)
+    @commands.bot_has_permissions(add_reactions=True,embed_links=True)
     async def help(self, ctx, *input):
         """Shows all modules of that bot"""
 	
