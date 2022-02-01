@@ -3,7 +3,6 @@ from discord.ext import commands
 import json
 from dotenv import load_dotenv
 import os
-from pretty_help import PrettyHelp, DefaultMenu
 
 if os.path.isfile('.env'):
     load_dotenv('.env')
@@ -18,19 +17,17 @@ with open("configurations.json", "r") as config:
 
 bot = commands.Bot(prefix)
 # Load cogs
-initial_extensions = ["Cogs.Tools","Cogs.Pokemon_TCG","Cogs.Github","Cogs.Fun", "Cogs.Quiz"]
+initial_extensions = ["Cogs.Tools","Cogs.Pokemon_TCG","Cogs.Github","Cogs.Fun", "Cogs.Quiz", "Cogs.help"]
 
 print(initial_extensions)
 
+bot.remove_command('help')
 
 for extension in initial_extensions:
     try:
         bot.load_extension(extension)
     except Exception as e:
         print(f"Failed to load extension {extension}")
-
-menu = DefaultMenu(page_left="◀", page_right="▶", remove="❌")
-bot.help_command = PrettyHelp(menu=menu, no_category="Commands")
 
 @bot.event
 async def on_ready():
