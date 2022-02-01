@@ -26,7 +26,7 @@ class Help(commands.Cog):
 	
 	# !SET THOSE VARIABLES TO MAKE THE COG FUNCTIONAL!
         prefix = "&"
-        version =  "v3.35-dev"
+        version =  "v3.35"
         
         # setting owner name - if you don't wanna be mentioned remove line 49-60 and adjust help text (line 88) 
         owner_name = "Sas2k#7691"
@@ -70,7 +70,7 @@ class Help(commands.Cog):
             # setting information about author
             emb.add_field(name="About", value=f"The Bots is developed by Sas2k#7691, based on discord.py.\n\
                                     This version of it is maintained by {owner}\n\
-                                    Please visit https://github.com/sas2k/zacain-empire-utility-bot to submit ideas or bugs.")
+                                    Please visit https://github.com/sas2k/pokestrike-utility-bot to submit ideas or bugs.")
             emb.set_footer(text=f"Bot is running {version}")
 
         # block called when one cog-name is given
@@ -111,7 +111,7 @@ class Help(commands.Cog):
             emb = discord.Embed(title="It's a magical place.",
                                 description="I don't know how you got here. But I didn't see this coming at all.\n"
                                             "Would you please be so kind to report that issue to me on github?\n"
-                                            "https://github.com/sas2k/zacian-empire-utility-bot/issues\n"
+                                            "https://github.com/sas2k/pokestrike-utility-bot/issues\n"
                                             "Thank you! ~Sas2k",
                                 color=discord.Color.red())
 
