@@ -67,7 +67,7 @@ class Quiz(commands.Cog):
             await send_embed(ctx, membed)
 
     @commands.command(name="add_quiz",
-                    help="Adds a pokemon related quiz to the database",
+                    help="Adds a pokemon related quiz to the database, `add_quiz 'question' 'answer[if there are 2 answers put a / between]'`",
                     usage="Question Answer")
     async def add_quiz(self, ctx:commands.Context, question: str, answer: str):
         question = question.lower()

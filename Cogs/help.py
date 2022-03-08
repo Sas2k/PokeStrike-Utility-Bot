@@ -26,7 +26,7 @@ class Help(commands.Cog):
 	
 	# !SET THOSE VARIABLES TO MAKE THE COG FUNCTIONAL!
         prefix = "&"
-        version =  "v3.35"
+        version =  "v3.36"
         
         # setting owner name - if you don't wanna be mentioned remove line 49-60 and adjust help text (line 88) 
         owner_name = "Sas2k#7691"

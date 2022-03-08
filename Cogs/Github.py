@@ -5,7 +5,7 @@ import dotenv
 import os
 
 if os.path.isfile('.env'):
-    dotenv.load_dotenv('Cogs/.env')
+    dotenv.load_dotenv('.env')
 else:
     pass
 
@@ -28,8 +28,7 @@ class Github(commands.Cog):
         self.bot = bot
 
     @commands.command(name = "bug",
-                    usage="Title Description",
-                    help = "Reports a Bug to the Github Repository")
+                    help = "Reports a Bug to the Github Repository, `bug \'Title\' \'Body\'`")
     async def bug(self, ctx:commands.Context, Title, Body):
         repo = g.get_repo("Sas2k/PokeStrike-Utility-Bot")
         repo.create_issue(title=f"[Bug][Discord: {ctx.author.display_name}]{Title}", body=Body, assignee="Sas2k", labels=['Bug'])
@@ -38,7 +37,7 @@ class Github(commands.Cog):
     
     @commands.command(name="feature",
                     usage="Title Description",
-                    help="suggest a feature for this bot using this command")
+                    help="suggest a feature for this bot using this command, `feature \'command-name\' \'command-body\'`")
     async def feature(self, ctx:commands.context, Title, Body):
         repo = g.get_repo("Sas2k/PokeStrike-Utility-Bot")
         repo.create_issue(title=f"[Feature][Discord: {ctx.author.display_name}]{Title}", body=Body, assignee="Sas2k", labels=['enhancement'])

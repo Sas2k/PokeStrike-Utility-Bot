@@ -68,7 +68,7 @@ class Fun(commands.Cog):
 
     @commands.command(name = "coin",
                     usage="@the_person_who_chose_heads(optional) @the_person_who_chose_tails(optional)",
-                    help="flips a coin, the first person is heads, the second person is tails")
+                    help="flips a coin, `@the_person_who_chose_heads(optional) @the_person_who_chose_tails(optional)`")
     async def coin(self, ctx:commands.Context, heads = None, tails = None):
         coin = randint(1,2)
         if heads == None:
@@ -84,7 +84,7 @@ class Fun(commands.Cog):
     
     @commands.command(name = "roll",
                     usage="sides(optional)",
-                    help="rolls a 6 sided dice if the amount sides aren't put")
+                    help="rolls a dice `sides (optional)`")
     async def roll(self, ctx:commands.Context, sides: int = None):
         if sides == None:
             dice = randint(1, 6)
@@ -95,8 +95,7 @@ class Fun(commands.Cog):
         
     @commands.command(name = "simulate",
                     aliases=["sim"],
-                    usage="rule-number(0-255) postion[right, left, center] initial-condition[random, impule(starts with 1 cell)",
-                    help="Simulates a rule of an elementry cellular automaton")
+                    help="Simulates a elementry cellular automaton `rule-number(0-255) postion[right, left, center] initial-condition[random, impule(starts with 1 cell`")
     async def commandName(self, ctx:commands.Context, rule: int, position: str, init_cond: str):
         rule_number = rule  # select the update rule
         size = 100  # number of cells in one row

@@ -24,9 +24,7 @@ class Tools(commands.Cog):
         await ctx.send(f"Pong! {round(self.bot.latency * 1000)}ms") # It's now self.bot.latency
 
     @commands.command(name="embed",
-                     usage=f"Title Description color Field1Header(optional) Field1T(Optional) Field1Inline(Optional)",
-                     brief="creates an embed",
-                     description="creates an embed for the color must be in hexadecimal")
+                     help="creates an embed, `Title Description color(in hex) Field1Header(optional) Field1T(Optional) Field1Inline(Optional)`")
     async def embed(self, ctx: commands.Context, title, description, color, F1h = None, F1T = None, F1I = None):
         color = int(color, 16)
         embed = discord.Embed(title=title, description=description, colour=color)
@@ -37,8 +35,7 @@ class Tools(commands.Cog):
         await send_embed(ctx, embed)
 
     @commands.command(name="poll",
-                    usage="question option1(optional) option2(optional)",
-                    help="Creates a poll with 2 options")
+                    help="Creates a poll with 2 options `question option1(optional) option2(optional)`")
     async def poll(self, ctx, question, option1=None, option2=None):
         if option1==None and option2==None:
             embed = Embed(title=f"{question}", description="**✅ = Yes**\n\n**❎ = No**", colour=0x96b9d9)
