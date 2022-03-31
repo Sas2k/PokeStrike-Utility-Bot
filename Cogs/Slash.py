@@ -7,7 +7,7 @@ class Slash(commands.Cog):
         self.bot = bot
 
     @cog_ext.cog_slash(name="slash", description="first slash command of this bot")
-    def slash(self, ctx: SlashContext):
+    def _slash(self, ctx: SlashContext):
         ctx.send("Slash")
 
 def setup(bot:commands.Bot):
