@@ -3,6 +3,7 @@ from discord.ext import commands
 import json
 from dotenv import load_dotenv
 import os
+from discord_slash import SlashCommand
 
 if os.path.isfile('.env'):
     load_dotenv('.env')
@@ -15,9 +16,10 @@ with open("configurations.json", "r") as config:
     data = json.load(config)
     prefix = data["prefix"]
 
-bot = commands.Bot(prefix)
+bot = commands.Bot(prefix, self_bot=True)
+slash = SlashCommand(bot)
 # Load cogs
-initial_extensions = ["Cogs.Tools","Cogs.Pokemon_TCG","Cogs.Github","Cogs.Fun", "Cogs.Quiz", "Cogs.help"]
+initial_extensions = ["Cogs.Tools","Cogs.Pokemon_TCG","Cogs.Github","Cogs.Fun", "Cogs.Quiz", "Cogs.help", "Cogs.Slash"]
 
 print(initial_extensions)
 
