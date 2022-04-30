@@ -16,7 +16,7 @@ with open("configurations.json", "r") as config:
     data = json.load(config)
     prefix = data["prefix"]
 
-bot = commands.Bot(prefix, self_bot=True)
+bot = commands.Bot(prefix)
 slash = SlashCommand(bot, sync_commands = True)
 # Load cogs
 initial_extensions = ["Cogs.Tools","Cogs.Pokemon_TCG","Cogs.Github","Cogs.Fun", "Cogs.Quiz", "Cogs.help", "Cogs.Slash"]

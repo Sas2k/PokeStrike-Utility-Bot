@@ -25,7 +25,7 @@ class Help(commands.Cog):
         """Shows all modules of that bot"""
 	
 	# !SET THOSE VARIABLES TO MAKE THE COG FUNCTIONAL!
-        prefix = "&"
+        prefix = "$$"
         version =  "v3.45"
         
         # setting owner name - if you don't wanna be mentioned remove line 49-60 and adjust help text (line 88) 
