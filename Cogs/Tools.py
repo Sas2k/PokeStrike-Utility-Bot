@@ -15,6 +15,7 @@ async def send_embed(ctx, embed):
                 f"May you inform the server team about this issue? :slight_smile: ", embed=embed)
 
 class Tools(commands.Cog):
+    """Tools and utilities"""
     def __init__(self, bot: commands.Bot):
         self.bot = bot
     
@@ -66,6 +67,17 @@ class Tools(commands.Cog):
         await ctx.send('Cleared by {}'.format(ctx.author.mention))
         await asyncio.sleep(2)
         await ctx.channel.purge(limit=1)
+
+    @commands.command(name = "say",
+                    help = "say 'hello world!'")
+    @commands.cooldown(1, 5, commands.BucketType.member)
+    async def say(self, ctx:commands.Context, *, sentence):
+        await ctx.send(sentence)
+    @say.error
+    async def command_name_error(ctx, error):
+        if isinstance(error, commands.CommandOnCooldown):
+            em = discord.Embed(title=f"Slow it down bro!",description=f"Try again in {error.retry_after:.2f}s.", color=0x96b9d9)
+            await ctx.send(embed=em)
 
 def setup(bot: commands.Bot):
     bot.add_cog(Tools(bot))

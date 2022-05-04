@@ -24,6 +24,7 @@ async def send_embed(ctx, embed):
                 f"May you inform the server team about this issue? :slight_smile: ", embed=embed)
 
 class Pokemon_TCG(commands.Cog):
+    """Pokemon TCG related commands"""
     def __init__(self, bot:commands.Bot):
         self.bot = bot
 

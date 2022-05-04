@@ -62,6 +62,7 @@ def cellular_automaton(rule_number, size, steps,
     return x
 
 class Fun(commands.Cog):
+    """The fun commands"""
     def __init__(self, bot:commands.Bot):
         self.bot = bot
 

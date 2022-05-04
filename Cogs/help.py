@@ -15,6 +15,7 @@ async def send_embed(ctx, embed):
 
 
 class Help(commands.Cog):
+    """the help commands"""
 
     def __init__(self, bot):
         self.bot = bot
@@ -26,7 +27,7 @@ class Help(commands.Cog):
 	
 	# !SET THOSE VARIABLES TO MAKE THE COG FUNCTIONAL!
         prefix = "$$"
-        version =  "v3.45"
+        version =  "v3.48"
         
         # setting owner name - if you don't wanna be mentioned remove line 49-60 and adjust help text (line 88) 
         owner_name = "Sas2k#7691"

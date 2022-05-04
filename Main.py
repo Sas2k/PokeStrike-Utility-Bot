@@ -17,7 +17,7 @@ with open("configurations.json", "r") as config:
     prefix = data["prefix"]
 
 bot = commands.Bot(prefix)
-slash = SlashCommand(bot, sync_commands = True)
+slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
 # Load cogs
 initial_extensions = ["Cogs.Tools","Cogs.Pokemon_TCG","Cogs.Github","Cogs.Fun", "Cogs.Quiz", "Cogs.help", "Cogs.Slash"]
 
@@ -38,10 +38,9 @@ async def on_ready():
     print(discord.__version__)
     for guild in bot.guilds:
         print(guild)
-    print(
-        f'{bot.user} is connected to the following guild:\n'
-        f'{guild.name}(id: {guild.id})'
-    )
+    print(f'{bot.user} is connected to the following guild:')
+    for guild in bot.guilds:
+        print(f'{guild.name}(id: {guild.id})')
     members = '\n - '.join([member.name for member in guild.members])
     print(f'Guild Members:\n - {members}')
 

@@ -24,6 +24,7 @@ async def send_embed(ctx, embed):
                 f"May you inform the server team about this issue? :slight_smile: ", embed=embed)
 
 class Github(commands.Cog):
+    """The bot related reporting and suggesting commands"""
     def __init__(self, bot:commands.Bot):
         self.bot = bot
 

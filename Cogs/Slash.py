@@ -2,6 +2,7 @@ from discord.ext import commands
 from discord_slash import cog_ext, SlashContext
 
 class Slash(commands.Cog):
+    """Slash commands"""
     def __init__(self, bot:commands.Bot):
         self.bot = bot
 
