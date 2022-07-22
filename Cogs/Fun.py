@@ -1,8 +1,18 @@
 import discord
 from discord.ext import commands
-from random import randint
+from random import randint, randrange
 import numpy as np
 import matplotlib.pyplot as plt
+import asyncio
+
+async def send_embed(ctx, embed):
+    try:
+        await ctx.send(embed=embed)
+    except discord.Forbidden:
+        try:
+            await ctx.send("Heym seems like, I can't send embeds. Please check my permissions :)")
+        except discord.Forbidden:
+            await ctx.author.send(f"Hey, seems like I can't send any message in {ctx.channel.name} on {ctx.guild.name}\nMay you inform the server team about this issue? :slight_smile:" , embed=embed)
 
 powers_of_two = np.array([[4], [2], [1]])  # shape (3, 1)
 
@@ -114,6 +124,24 @@ class Fun(commands.Cog):
         plt.savefig('elementary_cellular_automaton.png', dpi=300, bbox_inches='tight')
 
         await ctx.send(file=discord.File("elementary_cellular_automaton.png"))
+
+    @commands.command(name="number-guess",
+                      aliases = ["ng"],
+                      help="A number guessing game, you will have 1 minute to guess the number,\n`min-num max-num`")
+    async def number_guess(self, ctx: commands.Context, min_num: int, max_num: int):
+        embed = discord.Embed(title=f"Guess the Number", description=f"You have 60 secs, range {min_num}~{max_num}", color=int(f"{randrange(16**2):x}{randrange(16**2):x}{randrange(16**2):x}", 16)) 
+        chosen_num = randint(int(min_num), int(max_num))
+        await send_embed(ctx, embed)
+        def check(m) -> bool:
+            msg = m.content
+            return msg == str(chosen_num)
+        try:
+            resp_msg = await self.bot.wait_for('message', timeout=30.0, check=check)
+            if resp_msg:
+                await ctx.send(f"You got it {resp_msg.author.mention}, Number: {chosen_num}")
+        except asyncio.TimeoutError:
+            timeOut_embed = discord.Embed(title="Times Up!⏱", description=f"Nobody Guessed it. Answer: {chosen_num}", color=int(f"{randrange(16**2):x}{randrange(16**2):x}{randrange(16**2):x}", 16))
+            await send_embed(ctx, timeOut_embed)
 
 def setup(bot:commands.Bot):
     bot.add_cog(Fun(bot))

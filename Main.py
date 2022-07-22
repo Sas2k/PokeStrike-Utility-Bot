@@ -3,7 +3,7 @@ from discord.ext import commands
 import json
 from dotenv import load_dotenv
 import os
-from discord_slash import SlashCommand
+from discord_slash import SlashCommand, SlashContext
 
 if os.path.isfile('.env'):
     load_dotenv('.env')
@@ -43,5 +43,9 @@ async def on_ready():
         print(f'{guild.name}(id: {guild.id})')
     members = '\n - '.join([member.name for member in guild.members])
     print(f'Guild Members:\n - {members}')
+
+@slash.slash(name="Beta-Test")
+def _BetaTest(ctx:SlashContext):
+    ctx.send("This is a test")
 
 bot.run(token)
